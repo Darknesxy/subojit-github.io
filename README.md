@@ -4,7 +4,7 @@ An ultra-premium, editorial cyber-tactical portfolio built to match the visual d
 
 ## 🚀 Live Local Server
 The development server is running at:
-- **Local URL**: [http://localhost:5173](http://localhost:5173)
+- **Local URL**: https://darknesxy.github.io/subojit-github.io/
 
 ---
 
