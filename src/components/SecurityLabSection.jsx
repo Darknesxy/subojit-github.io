@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Laptop, Shield, Server, Database, Play, AlertTriangle, CheckCircle, Terminal, RefreshCw, Award, ExternalLink, Lock } from 'lucide-react';
 import DecipherText from './DecipherText';
+import ScrollReveal from './ScrollReveal';
 import { playClick, playBlip, playCyberAlert } from '../utils/audio';
 
 export default function SecurityLabSection() {
@@ -167,6 +168,7 @@ export default function SecurityLabSection() {
           </div>
 
           {/* Sub-block 1: VISUAL NETWORK PACKET FLOW PIPELINE */}
+          <ScrollReveal animation="fade-up" delay={0} duration={650} once={false}>
           <div className="my-8 bg-[#090d0f] border border-[#1b252c] rounded-lg p-6 sm:p-8 relative">
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
@@ -240,8 +242,10 @@ export default function SecurityLabSection() {
             </div>
 
           </div>
+          </ScrollReveal>
 
           {/* Sub-block 2: TRY ATTACK SCENARIOS (SIMULATED) */}
+          <ScrollReveal animation="fade-up" delay={80} duration={650} once={false}>
           <div className="mt-8 pt-6 border-t border-[#1e262c]">
             <div className="flex items-center justify-between mb-4">
               <div className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold">
@@ -323,8 +327,10 @@ export default function SecurityLabSection() {
             </div>
 
           </div>
+          </ScrollReveal>
 
           {/* Sub-block 3: HANDS-ON CTF ARENA & CERTIFICATIONS ROADMAP */}
+          <ScrollReveal animation="fade-up" delay={120} duration={650} once={false}>
           <div className="mt-8 pt-6 border-t border-[#1e262c]">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
               <div>
@@ -480,6 +486,7 @@ export default function SecurityLabSection() {
 
             </div>
           </div>
+          </ScrollReveal>
 
         </div>
 

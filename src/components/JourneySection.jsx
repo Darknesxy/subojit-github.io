@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronRight, Calendar, Sparkles, CheckCircle2 } from 'lucide-react';
 import DecipherText from './DecipherText';
+import ScrollReveal from './ScrollReveal';
 import { playClick } from '../utils/audio';
 
 export default function JourneySection() {
@@ -88,44 +89,52 @@ export default function JourneySection() {
               {timeline.map((item, idx) => {
                 const isSelected = selectedMilestone === idx;
                 return (
-                  <button
+                  <ScrollReveal
                     key={item.year}
-                    onClick={() => {
-                      playClick();
-                      setSelectedMilestone(idx);
-                    }}
-                    className={`flex flex-col items-start sm:items-center text-left sm:text-center p-3 rounded transition-all group ${
-                      isSelected ? 'bg-white shadow-xs' : 'hover:bg-white/60'
-                    }`}
+                    animation="fade-up"
+                    delay={idx * 80}
+                    duration={600}
+                    once={false}
                   >
-                    {/* Circle Node Pin */}
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
-                      isSelected
-                        ? 'bg-cyber-emerald border-emerald-400 text-white shadow-sm scale-110'
-                        : 'bg-white border-[#cfcdc5] text-gray-600 group-hover:border-black'
-                    }`}>
-                      <span className="w-2 h-2 rounded-full bg-current" />
-                    </div>
+                    <button
+                      onClick={() => {
+                        playClick();
+                        setSelectedMilestone(idx);
+                      }}
+                      className={`w-full flex flex-col items-start sm:items-center text-left sm:text-center p-3 rounded transition-all group cursor-pointer ${
+                        isSelected ? 'bg-white shadow-xs' : 'hover:bg-white/60'
+                      }`}
+                    >
+                      {/* Circle Node Pin */}
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
+                        isSelected
+                          ? 'bg-cyber-emerald border-emerald-400 text-white shadow-sm scale-110'
+                          : 'bg-white border-[#cfcdc5] text-gray-600 group-hover:border-black'
+                      }`}>
+                        <span className="w-2 h-2 rounded-full bg-current" />
+                      </div>
 
-                    {/* Year badge */}
-                    <span className={`font-mono text-xs font-black mt-3 transition-colors ${
-                      isSelected ? 'text-cyber-emerald' : 'text-gray-900'
-                    }`}>
-                      {item.year}
-                    </span>
+                      {/* Year badge */}
+                      <span className={`font-mono text-xs font-black mt-3 transition-colors ${
+                        isSelected ? 'text-cyber-emerald' : 'text-gray-900'
+                      }`}>
+                        {item.year}
+                      </span>
 
-                    {/* Milestone title */}
-                    <span className="font-display font-bold text-xs text-gray-800 mt-1 line-clamp-2">
-                      {item.title}
-                    </span>
-                  </button>
+                      {/* Milestone title */}
+                      <span className="font-display font-bold text-xs text-gray-800 mt-1 line-clamp-2">
+                        {item.title}
+                      </span>
+                    </button>
+                  </ScrollReveal>
                 );
               })}
             </div>
           </div>
 
           {/* Milestone Detail Card */}
-          <div className="bg-white border border-[#dfded8] p-6 rounded-lg shadow-2xs">
+          <ScrollReveal animation="fade-up" delay={200} duration={650} once={false}>
+            <div className="bg-white border border-[#dfded8] p-6 rounded-lg shadow-2xs">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-3">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-base font-black text-cyber-emerald bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">
@@ -163,6 +172,7 @@ export default function JourneySection() {
               </div>
             </div>
           </div>
+        </ScrollReveal>
 
         </div>
 

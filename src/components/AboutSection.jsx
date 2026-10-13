@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Shield, Award, BookOpen, Terminal, CheckCircle2, X, FileText, Download } from 'lucide-react';
 import DecipherText from './DecipherText';
+import ScrollReveal from './ScrollReveal';
 import { playClick, playBlip } from '../utils/audio';
 
 export default function AboutSection() {
@@ -41,18 +42,24 @@ export default function AboutSection() {
 
             {/* Micro Pillars */}
             <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-[#dfded8]">
-              <div>
-                <div className="font-mono text-[11px] text-cyber-emerald font-bold">01 // RECON</div>
-                <div className="text-xs text-gray-600 mt-1">Deep analysis of attack vectors</div>
-              </div>
-              <div>
-                <div className="font-mono text-[11px] text-cyber-emerald font-bold">02 // HARDEN</div>
-                <div className="text-xs text-gray-600 mt-1">Zero-trust architecture</div>
-              </div>
-              <div>
-                <div className="font-mono text-[11px] text-cyber-emerald font-bold">03 // EVOLVE</div>
-                <div className="text-xs text-gray-600 mt-1">Continuous learning in SOC & Cloud</div>
-              </div>
+              <ScrollReveal animation="fade-up" delay={60} once={false}>
+                <div>
+                  <div className="font-mono text-[11px] text-cyber-emerald font-bold">01 // RECON</div>
+                  <div className="text-xs text-gray-600 mt-1">Deep analysis of attack vectors</div>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={180} once={false}>
+                <div>
+                  <div className="font-mono text-[11px] text-cyber-emerald font-bold">02 // HARDEN</div>
+                  <div className="text-xs text-gray-600 mt-1">Zero-trust architecture</div>
+                </div>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={300} once={false}>
+                <div>
+                  <div className="font-mono text-[11px] text-cyber-emerald font-bold">03 // EVOLVE</div>
+                  <div className="text-xs text-gray-600 mt-1">Continuous learning in SOC & Cloud</div>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
 
@@ -62,7 +69,7 @@ export default function AboutSection() {
                 playClick();
                 setModalOpen(true);
               }}
-              className="border border-[#121417] hover:bg-black hover:text-white text-[#121417] px-6 py-3 font-mono text-xs tracking-wider font-semibold inline-flex items-center gap-2 transition-all active:scale-95 group"
+              className="border border-[#121417] hover:bg-black hover:text-white text-[#121417] px-6 py-3 font-mono text-xs tracking-wider font-semibold inline-flex items-center gap-2 transition-all active:scale-95 group cursor-pointer"
             >
               <span>MY FULL STORY</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -72,44 +79,46 @@ export default function AboutSection() {
 
         {/* Mountain Traveler Visual Column */}
         <div className="lg:col-span-5 p-8 lg:p-12 flex items-center justify-center bg-[#f8f7f3]">
-          <div className="relative group max-w-[380px] w-full overflow-hidden border border-[#dfded8] bg-black shadow-md">
-            
-            {/* Image */}
-            <img 
-              src="./assets/about-traveler.jpg" 
-              alt="Subojit looking towards mountains - Same curiosity, bigger goals" 
-              className="w-full h-[280px] sm:h-[320px] object-cover filter contrast-125 transition-transform duration-700 group-hover:scale-105"
-              onError={(e) => {
-                if (!e.target.dataset.retried) {
-                  e.target.dataset.retried = 'true';
-                  e.target.src = '/subojit-github.io/assets/about-traveler.jpg';
-                } else {
-                  e.target.src = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80";
-                }
-              }}
-            />
+          <ScrollReveal animation="fade-left" delay={150} duration={700} once={false} className="max-w-[380px] w-full">
+            <div className="relative group w-full overflow-hidden border border-[#dfded8] bg-black shadow-md">
+              
+              {/* Image */}
+              <img 
+                src="./assets/about-traveler.jpg" 
+                alt="Subojit looking towards mountains - Same curiosity, bigger goals" 
+                className="w-full h-[280px] sm:h-[320px] object-cover filter contrast-125 transition-transform duration-700 group-hover:scale-105"
+                onError={(e) => {
+                  if (!e.target.dataset.retried) {
+                    e.target.dataset.retried = 'true';
+                    e.target.src = '/subojit-github.io/assets/about-traveler.jpg';
+                  } else {
+                    e.target.src = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80";
+                  }
+                }}
+              />
 
-            {/* Dark vignette overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+              {/* Dark vignette overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-            {/* Signature & Badge */}
-            <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-start justify-end text-white">
-              <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase font-semibold">
-                ETHOS & VISION
-              </span>
-              <p className="font-display font-black text-lg sm:text-xl tracking-wide uppercase leading-tight mt-1 text-white drop-shadow">
-                SAME CURIOSITY.<br />BIGGER GOALS.
-              </p>
-              <div className="mt-2 font-mono text-[10px] text-gray-300 italic">
-                ~ Subojit Sarkar
+              {/* Signature & Badge */}
+              <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-start justify-end text-white">
+                <span className="font-mono text-[10px] text-emerald-400 tracking-widest uppercase font-semibold">
+                  ETHOS & VISION
+                </span>
+                <p className="font-display font-black text-lg sm:text-xl tracking-wide uppercase leading-tight mt-1 text-white drop-shadow">
+                  SAME CURIOSITY.<br />BIGGER GOALS.
+                </p>
+                <div className="mt-2 font-mono text-[10px] text-gray-300 italic">
+                  ~ Subojit Sarkar
+                </div>
+              </div>
+
+              {/* Cyber scanline accent */}
+              <div className="absolute top-2 right-2 font-mono text-[9px] text-emerald-400/80 bg-black/70 px-2 py-0.5 rounded border border-emerald-500/30">
+                EXP // 2026
               </div>
             </div>
-
-            {/* Cyber scanline accent */}
-            <div className="absolute top-2 right-2 font-mono text-[9px] text-emerald-400/80 bg-black/70 px-2 py-0.5 rounded border border-emerald-500/30">
-              EXP // 2026
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
 
       </div>

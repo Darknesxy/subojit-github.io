@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, ArrowUpRight, Copy, Check, Send, ShieldCheck, Key, FileText, Download } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import DecipherText from './DecipherText';
+import ScrollReveal from './ScrollReveal';
 import { playClick, playBlip } from '../utils/audio';
 
 // Custom inline SVG brand icons
@@ -83,102 +84,110 @@ export default function ContactSection({ onOpenConnectModal }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
             
             {/* 1. Email Box with Copy */}
-            <div className="bg-white border border-[#dfded8] p-4 rounded flex flex-col justify-between">
-              <div>
-                <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider block mb-1">
-                  DIRECT EMAIL
-                </span>
-                <a 
-                  href={`mailto:${email}`}
-                  className="font-mono text-xs text-gray-800 hover:text-cyber-emerald font-semibold break-all transition-colors block"
-                  title="Click to send email"
+            <ScrollReveal animation="fade-up" delay={0} duration={650} once={false} className="h-full">
+              <div className="bg-white border border-[#dfded8] p-4 rounded flex flex-col justify-between h-full shadow-xs hover:border-black transition-colors">
+                <div>
+                  <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider block mb-1">
+                    DIRECT EMAIL
+                  </span>
+                  <a 
+                    href={`mailto:${email}`}
+                    className="font-mono text-xs text-gray-800 hover:text-cyber-emerald font-semibold break-all transition-colors block"
+                    title="Click to send email"
+                  >
+                    {email}
+                  </a>
+                </div>
+                <button
+                  onClick={handleCopyEmail}
+                  className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-cyber-emerald hover:underline cursor-pointer"
                 >
-                  {email}
-                </a>
+                  <span>{copied ? 'COPIED TO CLIPBOARD' : 'COPY ADDRESS'}</span>
+                  {copied ? <Check className="w-3.5 h-3.5 text-cyber-emerald" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
               </div>
-              <button
-                onClick={handleCopyEmail}
-                className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-cyber-emerald hover:underline"
-              >
-                <span>{copied ? 'COPIED TO CLIPBOARD' : 'COPY ADDRESS'}</span>
-                {copied ? <Check className="w-3.5 h-3.5 text-cyber-emerald" /> : <Copy className="w-3.5 h-3.5" />}
-              </button>
-            </div>
+            </ScrollReveal>
 
             {/* 2. GitHub */}
-            <a
-              href="https://github.com/Darknesxy"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => playClick()}
-              className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
-                    CODE REPOSITORY
+            <ScrollReveal animation="fade-up" delay={120} duration={650} once={false} className="h-full">
+              <a
+                href="https://github.com/Darknesxy"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => playClick()}
+                className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group h-full shadow-xs"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
+                      CODE REPOSITORY
+                    </span>
+                    <GithubIcon className="w-4 h-4 text-gray-700" />
+                  </div>
+                  <span className="font-display font-black text-sm text-[#121417] mt-1 block">
+                    GitHub (@Darknesxy)
                   </span>
-                  <GithubIcon className="w-4 h-4 text-gray-700" />
                 </div>
-                <span className="font-display font-black text-sm text-[#121417] mt-1 block">
-                  GitHub (@Darknesxy)
-                </span>
-              </div>
-              <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
-                <span>View Source & Labs</span>
-                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
-            </a>
+                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
+                  <span>View Source & Labs</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </a>
+            </ScrollReveal>
 
             {/* 3. LinkedIn */}
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => playClick()}
-              className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
-                    PROFESSIONAL NETWORK
+            <ScrollReveal animation="fade-up" delay={240} duration={650} once={false} className="h-full">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => playClick()}
+                className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group h-full shadow-xs"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
+                      PROFESSIONAL NETWORK
+                    </span>
+                    <LinkedinIcon className="w-4 h-4 text-gray-700" />
+                  </div>
+                  <span className="font-display font-black text-sm text-[#121417] mt-1 block">
+                    LinkedIn Network
                   </span>
-                  <LinkedinIcon className="w-4 h-4 text-gray-700" />
                 </div>
-                <span className="font-display font-black text-sm text-[#121417] mt-1 block">
-                  LinkedIn Network
-                </span>
-              </div>
-              <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
-                <span>Connect & Career</span>
-                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
-            </a>
+                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
+                  <span>Connect & Career</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </a>
+            </ScrollReveal>
 
             {/* 4. Instagram / Social */}
-            <a
-              href="https://instagram.com/sxbojit?obrf=anc0dm5iMHB1bXV6"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => playClick()}
-              className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group"
-            >
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
-                    EXPLORER LOGS
+            <ScrollReveal animation="fade-up" delay={360} duration={650} once={false} className="h-full">
+              <a
+                href="https://instagram.com/sxbojit?obrf=anc0dm5iMHB1bXV6"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => playClick()}
+                className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group h-full shadow-xs"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
+                      EXPLORER LOGS
+                    </span>
+                    <InstagramIcon className="w-4 h-4 text-gray-700" />
+                  </div>
+                  <span className="font-display font-black text-sm text-[#121417] mt-1 block">
+                    Instagram (@sxbojit)
                   </span>
-                  <InstagramIcon className="w-4 h-4 text-gray-700" />
                 </div>
-                <span className="font-display font-black text-sm text-[#121417] mt-1 block">
-                  Instagram (@sxbojit)
-                </span>
-              </div>
-              <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
-                <span>Follow @sxbojit</span>
-                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </div>
-            </a>
+                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
+                  <span>Follow @sxbojit</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </a>
+            </ScrollReveal>
 
           </div>
 

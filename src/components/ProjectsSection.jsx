@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, Terminal, ExternalLink, ShieldAlert, Cloud, Lock, Server, Play, X, CheckCircle2 } from 'lucide-react';
 import DecipherText from './DecipherText';
+import ScrollReveal from './ScrollReveal';
 import { playClick, playBlip } from '../utils/audio';
 
 export default function ProjectsSection() {
@@ -180,67 +181,75 @@ export default function ProjectsSection() {
 
           {/* Project Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            {filteredProjects.map((project) => (
-              <div
+            {filteredProjects.map((project, idx) => (
+              <ScrollReveal
                 key={project.id}
-                onClick={() => handleOpenProject(project)}
-                className="group border border-[#dfded8] bg-white hover:border-black transition-all cursor-pointer overflow-hidden flex flex-col justify-between shadow-xs hover:shadow-md"
+                animation="fade-up"
+                delay={idx * 140}
+                duration={650}
+                once={false}
+                className="h-full"
               >
-                {/* Project Image Banner */}
-                <div className="relative h-48 sm:h-52 bg-black overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover filter contrast-125 transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
-                    onError={(e) => {
-                      if (!e.target.dataset.retried) {
-                        e.target.dataset.retried = 'true';
-                        e.target.src = `/subojit-github.io${project.image.replace(/^\./, '')}`;
-                      } else {
-                        e.target.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80";
-                      }
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-                  
-                  {/* Category Tag on Image */}
-                  <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs border border-white/20 text-emerald-400 font-mono text-[10px] px-2 py-0.5 rounded">
-                    {project.category}
-                  </div>
-
-                  {/* Corner Target HUD */}
-                  <div className="absolute bottom-3 right-3 font-mono text-[10px] text-gray-400">
-                    CLICK TO INSPECT ↗
-                  </div>
-                </div>
-
-                {/* Card Body */}
-                <div className="p-5 flex flex-col justify-between flex-1">
-                  <div>
-                    <h3 className="font-display font-black text-lg text-[#121417] group-hover:text-cyber-emerald transition-colors uppercase tracking-tight">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 font-sans mt-2 leading-relaxed">
-                      {project.summary}
-                    </p>
-                  </div>
-
-                  {/* Bottom Tags & Action Arrow */}
-                  <div className="mt-5 pt-4 border-t border-[#dfded8] flex items-center justify-between">
-                    <div className="flex flex-wrap gap-1.5 font-mono text-[11px] text-gray-700">
-                      {project.tags.map((tag, idx) => (
-                        <span key={idx} className="bg-[#f4f3ef] border border-[#dfded8] px-2 py-0.5 rounded">
-                          {tag}
-                        </span>
-                      ))}
+                <div
+                  onClick={() => handleOpenProject(project)}
+                  className="group border border-[#dfded8] bg-white hover:border-black transition-all cursor-pointer overflow-hidden flex flex-col justify-between shadow-xs hover:shadow-md h-full"
+                >
+                  {/* Project Image Banner */}
+                  <div className="relative h-48 sm:h-52 bg-black overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover filter contrast-125 transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
+                      onError={(e) => {
+                        if (!e.target.dataset.retried) {
+                          e.target.dataset.retried = 'true';
+                          e.target.src = `/subojit-github.io${project.image.replace(/^\./, '')}`;
+                        } else {
+                          e.target.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80";
+                        }
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                    
+                    {/* Category Tag on Image */}
+                    <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-xs border border-white/20 text-emerald-400 font-mono text-[10px] px-2 py-0.5 rounded">
+                      {project.category}
                     </div>
 
-                    <div className="w-7 h-7 rounded-full border border-[#dfded8] group-hover:border-black group-hover:bg-[#121417] group-hover:text-white flex items-center justify-center transition-colors">
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    {/* Corner Target HUD */}
+                    <div className="absolute bottom-3 right-3 font-mono text-[10px] text-gray-400">
+                      CLICK TO INSPECT ↗
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-5 flex flex-col justify-between flex-1">
+                    <div>
+                      <h3 className="font-display font-black text-lg text-[#121417] group-hover:text-cyber-emerald transition-colors uppercase tracking-tight">
+                        {project.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-gray-600 font-sans mt-2 leading-relaxed">
+                        {project.summary}
+                      </p>
+                    </div>
+
+                    {/* Bottom Tags & Action Arrow */}
+                    <div className="mt-5 pt-4 border-t border-[#dfded8] flex items-center justify-between">
+                      <div className="flex flex-wrap gap-1.5 font-mono text-[11px] text-gray-700">
+                        {project.tags.map((tag, tIdx) => (
+                          <span key={tIdx} className="bg-[#f4f3ef] border border-[#dfded8] px-2 py-0.5 rounded">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="w-7 h-7 rounded-full border border-[#dfded8] group-hover:border-black group-hover:bg-[#121417] group-hover:text-white flex items-center justify-center transition-colors">
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 

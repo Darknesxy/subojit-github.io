@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Shield, Cloud, Network, Terminal, Code2, ChevronRight, CheckCircle2 } from 'lucide-react';
 import SkillsCore3D from './SkillsCore3D';
 import DecipherText from './DecipherText';
+import ScrollReveal from './ScrollReveal';
 import { playClick, playBlip } from '../utils/audio';
 
 export default function SkillsSection() {
@@ -256,29 +257,37 @@ export default function SkillsSection() {
 
             {/* Selector Pill Tabs */}
             <div className="space-y-2 mb-6">
-              {skillKeys.map((key) => {
+              {skillKeys.map((key, idx) => {
                 const isSelected = selectedSkill === key;
                 return (
-                  <button
+                  <ScrollReveal
                     key={key}
-                    onClick={() => handleSelect(key)}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded font-mono text-xs transition-all text-left ${
-                      isSelected
-                        ? 'bg-white border-2 border-cyber-emerald text-cyber-emerald font-bold shadow-xs'
-                        : 'bg-white/60 hover:bg-white border border-[#dfded8] text-gray-700 hover:text-black'
-                    }`}
+                    animation="fade-left"
+                    delay={idx * 60}
+                    duration={600}
+                    once={false}
                   >
-                    <div className="flex items-center gap-2">
-                      <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-cyber-emerald animate-pulse' : 'bg-gray-300'}`} />
-                      <span>{key}</span>
-                    </div>
-                    <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'translate-x-1 text-cyber-emerald' : 'text-gray-400'}`} />
-                  </button>
+                    <button
+                      onClick={() => handleSelect(key)}
+                      className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded font-mono text-xs transition-all text-left cursor-pointer ${
+                        isSelected
+                          ? 'bg-white border-2 border-cyber-emerald text-cyber-emerald font-bold shadow-xs'
+                          : 'bg-white/60 hover:bg-white border border-[#dfded8] text-gray-700 hover:text-black'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-cyber-emerald animate-pulse' : 'bg-gray-300'}`} />
+                        <span>{key}</span>
+                      </div>
+                      <ChevronRight className={`w-3.5 h-3.5 transition-transform ${isSelected ? 'translate-x-1 text-cyber-emerald' : 'text-gray-400'}`} />
+                    </button>
+                  </ScrollReveal>
                 );
               })}
             </div>
 
             {/* Selected Skill Detail Panel */}
+            <ScrollReveal animation="fade-up" delay={200} duration={650} once={false}>
             <div className="bg-white border border-[#dfded8] p-4 rounded shadow-2xs space-y-3">
               <div className="flex items-center justify-between border-b border-gray-100 pb-2">
                 <span className="font-display font-black text-sm uppercase text-[#121417]">
@@ -325,6 +334,7 @@ export default function SkillsSection() {
                 </ul>
               </div>
             </div>
+            </ScrollReveal>
           </div>
 
           {/* Microcopy footnote from design */}

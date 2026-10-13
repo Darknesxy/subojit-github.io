@@ -6,12 +6,16 @@ export default function DecipherText({
   text,
   className = '',
   scrambleOnHover = true,
-  triggerOnMount = true,
-  speed = 30,
+  triggerOnScroll = true,
+  triggerOnMount = false,
+  speed = 28,
+  once = true,
 }) {
   const [displayText, setDisplayText] = useState(text);
   const [isScrambling, setIsScrambling] = useState(false);
   const intervalRef = useRef(null);
+  const domRef = useRef(null);
+  const hasTriggeredRef = useRef(false);
 
   const startScramble = () => {
     if (isScrambling) return;
@@ -47,7 +51,32 @@ export default function DecipherText({
   };
 
   useEffect(() => {
-    if (triggerOnMount) {
+    const el = domRef.current;
+    if (!el) return;
+
+    if (triggerOnScroll && typeof window !== 'undefined' && window.IntersectionObserver) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              if (once && hasTriggeredRef.current) return;
+              hasTriggeredRef.current = true;
+              startScramble();
+              if (once) {
+                observer.unobserve(entry.target);
+              }
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      observer.observe(el);
+      return () => {
+        observer.unobserve(el);
+        clearInterval(intervalRef.current);
+      };
+    } else if (triggerOnMount) {
       const timeout = setTimeout(() => {
         startScramble();
       }, 200);
@@ -56,8 +85,7 @@ export default function DecipherText({
         clearInterval(intervalRef.current);
       };
     }
-    return () => clearInterval(intervalRef.current);
-  }, [text]);
+  }, [text, triggerOnScroll, once]);
 
   const handleInteraction = () => {
     if (scrambleOnHover) {
@@ -67,6 +95,7 @@ export default function DecipherText({
 
   return (
     <span
+      ref={domRef}
       onMouseEnter={handleInteraction}
       onClick={handleInteraction}
       className={`inline-block transition-colors cursor-default select-none ${className}`}

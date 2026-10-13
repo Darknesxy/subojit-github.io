@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -19,6 +20,55 @@ export default function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [connectOpen, setConnectOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const lenisRef = useRef(null);
+
+  // Initialize Lenis butter-smooth momentum scrolling
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      touchMultiplier: 1.2,
+      infinite: false,
+    });
+
+    lenisRef.current = lenis;
+
+    let rafId;
+    function raf(time) {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    }
+    rafId = requestAnimationFrame(raf);
+
+    // Track scroll progress for tactical HUD progress bar
+    const handleLenisScroll = (e) => {
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress(Math.min(100, Math.max(0, (e.scroll / totalScroll) * 100)));
+      }
+    };
+    lenis.on('scroll', handleLenisScroll);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, []);
+
+  // Pause Lenis when modal overlays are active
+  useEffect(() => {
+    if (!lenisRef.current) return;
+    if (searchOpen || terminalOpen || connectOpen) {
+      lenisRef.current.stop();
+    } else {
+      lenisRef.current.start();
+    }
+  }, [searchOpen, terminalOpen, connectOpen]);
 
   // Active section scroll spy
   useEffect(() => {
@@ -60,16 +110,29 @@ export default function App() {
   }, []);
 
   const handleNavigate = (id) => {
+    playClick();
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(element, { offset: -20, duration: 1.2 });
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-[#f4f3ef] text-[#121417] flex flex-col antialiased selection:bg-[#0e5a3c] selection:text-white">
       
+      {/* Tactical Top Scroll Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-[2.5px] z-[70] bg-transparent pointer-events-none">
+        <div
+          className="h-full bg-gradient-to-r from-[#0e5a3c] via-[#10b981] to-[#0e5a3c] transition-all duration-75 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       {/* Custom Cyber Crosshair / Dot Cursor */}
       <CyberCursor />
 
@@ -82,7 +145,7 @@ export default function App() {
         onOpenTerminal={() => setTerminalOpen(true)}
       />
 
-      {/* Main Content Sections with Scroll Reveal Animations */}
+      {/* Main Content Sections */}
       <main className="flex-1 flex flex-col">
         {/* 01 HOME */}
         <HeroSection
@@ -91,36 +154,24 @@ export default function App() {
         />
 
         {/* 02 ABOUT */}
-        <ScrollReveal animation="fade-up" duration={700}>
-          <AboutSection />
-        </ScrollReveal>
+        <AboutSection />
 
         {/* 03 SKILLS */}
-        <ScrollReveal animation="fade-up" duration={700}>
-          <SkillsSection />
-        </ScrollReveal>
+        <SkillsSection />
 
         {/* 04 PROJECTS */}
-        <ScrollReveal animation="fade-up" duration={700}>
-          <ProjectsSection />
-        </ScrollReveal>
+        <ProjectsSection />
 
         {/* 05 SECURITY LAB */}
-        <ScrollReveal animation="fade-up" duration={700}>
-          <SecurityLabSection />
-        </ScrollReveal>
+        <SecurityLabSection />
 
         {/* 06 MY JOURNEY */}
-        <ScrollReveal animation="fade-up" duration={700}>
-          <JourneySection />
-        </ScrollReveal>
+        <JourneySection />
 
         {/* 07 CONTACT */}
-        <ScrollReveal animation="fade-up" duration={700}>
-          <ContactSection
-            onOpenConnectModal={() => setConnectOpen(true)}
-          />
-        </ScrollReveal>
+        <ContactSection
+          onOpenConnectModal={() => setConnectOpen(true)}
+        />
       </main>
 
       {/* Global Interactive Modals */}
