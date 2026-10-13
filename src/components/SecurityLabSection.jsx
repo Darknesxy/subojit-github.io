@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Laptop, Shield, Server, Database, Play, AlertTriangle, CheckCircle, Terminal, RefreshCw } from 'lucide-react';
+import { Laptop, Shield, Server, Database, Play, AlertTriangle, CheckCircle, Terminal, RefreshCw, Award, ExternalLink, Lock } from 'lucide-react';
 import DecipherText from './DecipherText';
 import { playClick, playBlip, playCyberAlert } from '../utils/audio';
 
@@ -322,6 +322,163 @@ export default function SecurityLabSection() {
 
             </div>
 
+          </div>
+
+          {/* Sub-block 3: HANDS-ON CTF ARENA & CERTIFICATIONS ROADMAP */}
+          <div className="mt-8 pt-6 border-t border-[#1e262c]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <div className="font-mono text-xs uppercase tracking-widest text-emerald-400 font-bold flex items-center gap-1.5">
+                  <Award className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>HANDS-ON CTF ARENA & CERTIFICATIONS ROADMAP</span>
+                </div>
+                <p className="text-[11px] text-gray-400 font-mono mt-0.5">
+                  Practical offensive/defensive lab rankings and industry credentials.
+                </p>
+              </div>
+              <span className="font-mono text-[10px] text-gray-400 bg-black/40 px-2.5 py-1 rounded border border-[#1b252c]">
+                PROOF OF WORK // 2026-2029
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              
+              {/* Card 1: TryHackMe CTF Profile */}
+              <div className="bg-[#090d0f] border border-[#1b252c] rounded-lg p-4 flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
+                <div>
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#1b252c]">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                      <span className="font-display font-black text-sm uppercase text-white tracking-wider">
+                        TRYHACKME CTF
+                      </span>
+                    </div>
+                    <span className="font-mono text-[9px] bg-red-950 text-red-300 px-1.5 py-0.5 rounded border border-red-800/40">
+                      ACTIVE LABS
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-400 font-sans leading-relaxed mb-3">
+                    Hands-on penetration testing rooms, Linux terminal mastery, and network enumeration CTFs.
+                  </p>
+
+                  <div className="space-y-1.5 font-mono text-[10px] text-gray-300 bg-black/50 p-2.5 rounded border border-[#162028]">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Track:</span>
+                      <span className="text-emerald-400 font-semibold">Pre-Security & Jr Pentester</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Skillset:</span>
+                      <span className="text-gray-300">Nmap • Wireshark • Burp</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Rank Goal:</span>
+                      <span className="text-emerald-400 font-bold">Top 5% Global</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="https://tryhackme.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => playClick()}
+                  className="mt-4 pt-3 border-t border-[#1b252c] flex items-center justify-between text-xs font-mono text-emerald-400 group-hover:text-emerald-300 font-semibold"
+                >
+                  <span>Explore TryHackMe Arena</span>
+                  <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              </div>
+
+              {/* Card 2: CompTIA Security+ (SY0-701) */}
+              <div className="bg-[#090d0f] border border-[#1b252c] rounded-lg p-4 flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
+                <div>
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#1b252c]">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="font-display font-black text-sm uppercase text-white tracking-wider">
+                        COMPTIA SECURITY+
+                      </span>
+                    </div>
+                    <span className="font-mono text-[9px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-800/40">
+                      IN PREPARATION
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-400 font-sans leading-relaxed mb-3">
+                    Gold-standard baseline certification for SOC Analysts, threat intelligence, and enterprise hardening.
+                  </p>
+
+                  <div className="space-y-1.5 font-mono text-[10px] text-gray-300 bg-black/50 p-2.5 rounded border border-[#162028]">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Exam:</span>
+                      <span className="text-gray-300">SY0-701 Core Security</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Focus:</span>
+                      <span className="text-emerald-400">Zero-Trust • Cryptography</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Timeline:</span>
+                      <span className="text-gray-300">2026 Target Exam</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-3 border-t border-[#1b252c] flex items-center justify-between text-xs font-mono text-gray-400">
+                  <span className="text-emerald-400 font-semibold">SOC Tier-1 Foundation</span>
+                  <Lock className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+              </div>
+
+              {/* Card 3: AWS Cloud Practitioner & Repos */}
+              <div className="bg-[#090d0f] border border-[#1b252c] rounded-lg p-4 flex flex-col justify-between hover:border-emerald-500/50 transition-all group">
+                <div>
+                  <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#1b252c]">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                      <span className="font-display font-black text-sm uppercase text-white tracking-wider">
+                        AWS CLOUD & REPOS
+                      </span>
+                    </div>
+                    <span className="font-mono text-[9px] bg-amber-950 text-amber-300 px-1.5 py-0.5 rounded border border-amber-800/40">
+                      BUILDER TRACK
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-400 font-sans leading-relaxed mb-3">
+                    Cloud infrastructure isolation, AWS IAM least-privilege, and open-source Python security tools.
+                  </p>
+
+                  <div className="space-y-1.5 font-mono text-[10px] text-gray-300 bg-black/50 p-2.5 rounded border border-[#162028]">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Degree:</span>
+                      <span className="text-gray-300">BCA Cloud & Cyber (26-29)</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Code Hub:</span>
+                      <span className="text-emerald-400 font-semibold">github.com/Darknesxy</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Cloud Target:</span>
+                      <span className="text-amber-400 font-bold">AWS CLF-C02</span>
+                    </div>
+                  </div>
+                </div>
+
+                <a
+                  href="https://github.com/Darknesxy"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => playClick()}
+                  className="mt-4 pt-3 border-t border-[#1b252c] flex items-center justify-between text-xs font-mono text-emerald-400 group-hover:text-emerald-300 font-semibold"
+                >
+                  <span>Inspect GitHub Toolkit</span>
+                  <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </a>
+              </div>
+
+            </div>
           </div>
 
         </div>
