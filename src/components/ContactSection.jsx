@@ -130,29 +130,28 @@ export default function ContactSection({ onOpenConnectModal }) {
               </div>
             </a>
 
-            {/* 3. Official Resume / CV Download Card */}
+            {/* 3. LinkedIn */}
             <a
-              href="./assets/subojit-resume.pdf"
-              download="Subojit_Das_Sarkar_Resume.pdf"
+              href="https://linkedin.com"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
               onClick={() => playClick()}
               className="bg-white border border-[#dfded8] hover:border-black p-4 rounded flex flex-col justify-between transition-all group"
             >
               <div>
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-[10px] text-gray-400 uppercase tracking-wider">
-                    CURRICULUM VITAE
+                    PROFESSIONAL NETWORK
                   </span>
-                  <FileText className="w-4 h-4 text-cyber-emerald" />
+                  <LinkedinIcon className="w-4 h-4 text-gray-700" />
                 </div>
                 <span className="font-display font-black text-sm text-[#121417] mt-1 block">
-                  Download Resume (PDF)
+                  LinkedIn Network
                 </span>
               </div>
-              <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-cyber-emerald font-semibold group-hover:underline">
-                <span>Verified 2026 CV</span>
-                <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+              <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between font-mono text-xs text-gray-600 group-hover:text-black">
+                <span>Connect & Career</span>
+                <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </a>
 
