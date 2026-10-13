@@ -190,10 +190,16 @@ export default function HeroSection({ onOpenIntro, onExploreProjects }) {
           >
             {/* The User's High-Res Hero Photo - Fills column naturally */}
             <img 
-              src="/assets/hero-subojit.jpg" 
+              src="./assets/hero-subojit.jpg" 
               alt="Subojit Sarkar - Cybersecurity Explorer" 
               className="w-full h-full max-h-[calc(100vh-6.5rem)] object-contain object-bottom filter contrast-105 transition-all duration-300"
               loading="eager"
+              onError={(e) => {
+                if (!e.target.dataset.retried) {
+                  e.target.dataset.retried = 'true';
+                  e.target.src = '/subojit-github.io/assets/hero-subojit.jpg';
+                }
+              }}
             />
 
             {/* Holographic Scanline & Glitch Accent on Hover */}

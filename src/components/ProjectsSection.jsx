@@ -16,7 +16,7 @@ export default function ProjectsSection() {
       id: 'vuln-scanner',
       title: 'VULNERABILITY SCANNER',
       category: 'CYBERSECURITY',
-      image: '/assets/project-scanner.jpg',
+      image: './assets/project-scanner.jpg',
       tags: ['Python', 'Security', 'CLI'],
       summary: 'Automated network reconnaissance and CVE vulnerability assessment engine for local subnets and web services.',
       details: {
@@ -34,7 +34,7 @@ export default function ProjectsSection() {
       id: 'cloud-infra',
       title: 'CLOUD INFRASTRUCTURE',
       category: 'CLOUD',
-      image: '/assets/project-cloud.jpg',
+      image: './assets/project-cloud.jpg',
       tags: ['AWS', 'Cloud', 'DevOps'],
       summary: 'Resilient multi-tier cloud infrastructure with least-privilege IAM policies, automated VPC peering, and WAF protection.',
       details: {
@@ -52,7 +52,7 @@ export default function ProjectsSection() {
       id: 'nids-packet',
       title: 'NETWORK INTRUSION DETECTOR',
       category: 'CYBERSECURITY',
-      image: '/assets/project-scanner.jpg',
+      image: './assets/project-scanner.jpg',
       tags: ['Python', 'Scapy', 'Networking'],
       summary: 'Lightweight Network IDS sniffing promiscuous interfaces to detect ARP spoofing, SYN flood attacks, and port sweeps.',
       details: {
@@ -70,7 +70,7 @@ export default function ProjectsSection() {
       id: 'zero-trust-auth',
       title: 'ZERO-TRUST AUTH GATEWAY',
       category: 'TOOLS',
-      image: '/assets/project-cloud.jpg',
+      image: './assets/project-cloud.jpg',
       tags: ['Node.js', 'JWT', 'Crypto'],
       summary: 'Hardened identity gateway with cryptographic session verification, MFA TOTP tokens, and device fingerprint validation.',
       details: {
@@ -193,7 +193,12 @@ export default function ProjectsSection() {
                     alt={project.title}
                     className="w-full h-full object-cover filter contrast-125 transition-transform duration-500 group-hover:scale-105 opacity-90 group-hover:opacity-100"
                     onError={(e) => {
-                      e.target.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80";
+                      if (!e.target.dataset.retried) {
+                        e.target.dataset.retried = 'true';
+                        e.target.src = `/subojit-github.io${project.image.replace(/^\./, '')}`;
+                      } else {
+                        e.target.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80";
+                      }
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />

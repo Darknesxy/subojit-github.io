@@ -76,11 +76,16 @@ export default function AboutSection() {
             
             {/* Image */}
             <img 
-              src="/assets/about-traveler.jpg" 
+              src="./assets/about-traveler.jpg" 
               alt="Subojit looking towards mountains - Same curiosity, bigger goals" 
               className="w-full h-[280px] sm:h-[320px] object-cover filter contrast-125 transition-transform duration-700 group-hover:scale-105"
               onError={(e) => {
-                e.target.src = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80";
+                if (!e.target.dataset.retried) {
+                  e.target.dataset.retried = 'true';
+                  e.target.src = '/subojit-github.io/assets/about-traveler.jpg';
+                } else {
+                  e.target.src = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80";
+                }
               }}
             />
 
