@@ -13,6 +13,7 @@ export default function CommandPalette({ isOpen, onClose, onNavigate, onOpenTerm
     { id: 'lab', title: '05 Security Lab & Simulations', desc: 'Packet flow pipeline & live attack demos', section: 'lab' },
     { id: 'journey', title: '06 Growth Timeline', desc: 'Chronological roadmap from 2021 to 2025', section: 'journey' },
     { id: 'contact', title: '07 Get In Touch', desc: 'Direct secure communication channel', section: 'contact' },
+    { id: 'resume', title: '📄 Download Resume (PDF)', desc: 'Official Subojit Das Sarkar CV', action: 'resume' },
     { id: 'intro', title: '▶ Watch Cyber Intro Reel', desc: 'Interactive terminal security boot sequence', action: 'terminal' },
     { id: 'connect', title: '✉ Send Encrypted Message', desc: 'Open contact modal', action: 'connect' },
     { id: 'sound', title: '🔊 Toggle UI Sound FX', desc: 'Enable or mute tactical synthesized audio', action: 'sound' },
@@ -47,6 +48,9 @@ export default function CommandPalette({ isOpen, onClose, onNavigate, onOpenTerm
     playClick();
     if (cmd.section) {
       onNavigate(cmd.section);
+      onClose();
+    } else if (cmd.action === 'resume') {
+      window.open('./assets/subojit-resume.pdf', '_blank');
       onClose();
     } else if (cmd.action === 'terminal') {
       onClose();

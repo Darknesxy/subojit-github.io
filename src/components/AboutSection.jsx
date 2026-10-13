@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Shield, Award, BookOpen, Terminal, CheckCircle2, X } from 'lucide-react';
+import { ArrowRight, Shield, Award, BookOpen, Terminal, CheckCircle2, X, FileText, Download } from 'lucide-react';
 import DecipherText from './DecipherText';
 import { playClick, playBlip } from '../utils/audio';
 
@@ -32,7 +32,7 @@ export default function AboutSection() {
             </h2>
             <div className="space-y-4 text-gray-700 text-sm sm:text-base leading-relaxed font-sans max-w-xl">
               <p>
-                I'm a <strong className="font-semibold text-black">BCA student</strong> with a deep interest in cybersecurity and cloud computing. I love understanding how systems work, why they break, and how to make them secure.
+                I'm a <strong className="font-semibold text-black">BCA student (Cloud Computing & Cybersecurity, 2026–2029)</strong> with a deep interest in defensive cybersecurity, Linux systems, and cloud infrastructure. I love understanding how protocols communicate, why systems break, and how to harden them against modern threat vectors.
               </p>
               <p>
                 This portfolio is a reflection of my learning, experiments and journey towards becoming a cybersecurity professional. From analyzing packet streams in Wireshark to architecting hardened cloud infrastructure, every project is built from the ground up.
@@ -127,10 +127,10 @@ export default function AboutSection() {
             </button>
 
             <div className="font-mono text-xs text-cyber-emerald font-bold tracking-widest uppercase mb-1">
-              DOSSIER // SUBOJIT SARKAR
+              DOSSIER // SUBOJIT DAS SARKAR
             </div>
             <h3 className="font-display font-black text-2xl text-[#121417] uppercase tracking-tight mb-4">
-              CYBERSECURITY EXPLORER & BUILDER
+              CYBERSECURITY & CLOUD EXPLORER
             </h3>
 
             <div className="space-y-4 text-sm text-gray-700 font-sans leading-relaxed">
@@ -158,12 +158,24 @@ export default function AboutSection() {
 
             <div className="mt-6 pt-4 border-t border-[#dfded8] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <span className="font-mono text-xs text-gray-500">KOLKATA / INDIA • 2026</span>
-              <button 
-                onClick={() => setModalOpen(false)}
-                className="bg-[#121417] text-white px-5 py-2 font-mono text-xs uppercase tracking-wider font-semibold self-end sm:self-auto"
-              >
-                CLOSE DOSSIER
-              </button>
+              <div className="flex items-center gap-2 self-end sm:self-auto">
+                <a
+                  href="./assets/subojit-resume.pdf"
+                  download="Subojit_Das_Sarkar_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-cyber-emerald hover:bg-emerald-700 text-white px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold flex items-center gap-1.5"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>DOWNLOAD CV</span>
+                </a>
+                <button 
+                  onClick={() => setModalOpen(false)}
+                  className="bg-[#121417] text-white px-4 py-2 font-mono text-xs uppercase tracking-wider font-semibold"
+                >
+                  CLOSE
+                </button>
+              </div>
             </div>
 
           </div>

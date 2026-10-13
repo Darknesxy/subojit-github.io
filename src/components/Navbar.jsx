@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Volume2, VolumeX, Menu, X, Terminal, Shield } from 'lucide-react';
+import { Search, Volume2, VolumeX, Menu, X, Terminal, Shield, FileText, Download } from 'lucide-react';
 import { playClick, playBlip, toggleSound, isSoundEnabled } from '../utils/audio';
 
 export default function Navbar({ onOpenSearch, onOpenContact, onOpenTerminal, activeSection, setActiveSection }) {
@@ -119,6 +119,21 @@ export default function Navbar({ onOpenSearch, onOpenContact, onOpenTerminal, ac
             <Terminal className="w-3.5 h-3.5 hover:text-cyber-emerald transition-colors" />
           </button>
 
+          {/* Resume PDF Download */}
+          <a
+            href="./assets/subojit-resume.pdf"
+            download="Subojit_Das_Sarkar_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => playClick()}
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 border border-[#dfded8] bg-[#faf9f5] hover:bg-white text-gray-800 hover:border-black rounded-full font-mono text-xs font-semibold tracking-wider transition-all shadow-2xs group shrink-0"
+            title="Download Subojit Das Sarkar Resume (PDF)"
+          >
+            <FileText className="w-3.5 h-3.5 text-cyber-emerald group-hover:scale-110 transition-transform" />
+            <span>RESUME</span>
+            <Download className="w-3 h-3 text-gray-500 group-hover:translate-y-0.5 transition-transform" />
+          </a>
+
           {/* Let's Connect CTA Button */}
           <button
             onClick={() => {
@@ -157,7 +172,16 @@ export default function Navbar({ onOpenSearch, onOpenContact, onOpenTerminal, ac
               </button>
             ))}
           </div>
-          <div className="pt-2 border-t border-[#dfded8] flex items-center justify-between">
+          <div className="pt-2 border-t border-[#dfded8] flex flex-wrap items-center justify-between gap-2">
+            <a
+              href="./assets/subojit-resume.pdf"
+              download="Subojit_Das_Sarkar_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-mono text-cyber-emerald font-semibold flex items-center gap-1.5 bg-emerald-50 px-2 py-1 rounded border border-emerald-200"
+            >
+              <FileText className="w-3.5 h-3.5" /> Download CV (PDF)
+            </a>
             <button
               onClick={() => {
                 onOpenSearch();

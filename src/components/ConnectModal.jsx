@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Send, ShieldCheck, CheckCircle2, Lock } from 'lucide-react';
+import { X, Send, ShieldCheck, CheckCircle2, Lock, Mail, Copy, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { playClick, playBlip } from '../utils/audio';
 
@@ -11,8 +11,15 @@ export default function ConnectModal({ isOpen, onClose }) {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [copiedDraft, setCopiedDraft] = useState(false);
 
   if (!isOpen) return null;
+
+  const mailtoUrl = `mailto:sarkarsubojit1@gmail.com?subject=${encodeURIComponent(
+    `[Portfolio Handshake] ${formData.classification} from ${formData.name}`
+  )}&body=${encodeURIComponent(
+    `Hi Subojit,\n\nName: ${formData.name}\nEmail: ${formData.email}\nTopic: ${formData.classification}\n\nMessage:\n${formData.message}\n\n---\nSent via Subojit Portfolio Handshake`
+  )}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +37,22 @@ export default function ConnectModal({ isOpen, onClose }) {
       // ignore
     }
 
+    // Attempt to trigger default mail client directly
+    try {
+      window.location.href = mailtoUrl;
+    } catch (err) {
+      // fallback handled in UI
+    }
+
     setSubmitted(true);
+  };
+
+  const handleCopyDraft = () => {
+    playBlip(850);
+    const text = `From: ${formData.name} (${formData.email})\nTopic: ${formData.classification}\n\n${formData.message}`;
+    navigator.clipboard.writeText(text);
+    setCopiedDraft(true);
+    setTimeout(() => setCopiedDraft(false), 2000);
   };
 
   const handleReset = () => {
@@ -133,25 +155,47 @@ export default function ConnectModal({ isOpen, onClose }) {
             </form>
           </>
         ) : (
-          <div className="py-8 text-center space-y-4">
+          <div className="py-6 text-center space-y-4">
             <div className="w-14 h-14 rounded-full bg-emerald-100 border border-emerald-300 text-cyber-emerald flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8" />
             </div>
 
             <h3 className="font-display font-black text-2xl text-[#121417] uppercase tracking-tight">
-              TRANSMISSION DELIVERED
+              TRANSMISSION ROUTED
             </h3>
 
             <p className="font-mono text-xs text-gray-600 max-w-sm mx-auto leading-relaxed">
-              Your message has been verified and securely routed to Subojit's encrypted queue. Expect a response within 24 hours.
+              Your message was compiled for <strong className="text-black">sarkarsubojit1@gmail.com</strong>. If your email app did not open automatically, you can send or copy below:
             </p>
 
-            <button
-              onClick={handleReset}
-              className="bg-[#121417] text-white px-6 py-2.5 font-mono text-xs uppercase tracking-wider font-semibold mt-4"
-            >
-              CLOSE WINDOW
-            </button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 pt-2">
+              <a
+                href={mailtoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto bg-cyber-emerald hover:bg-emerald-700 text-white px-4 py-2 font-mono text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-xs"
+              >
+                <Mail className="w-3.5 h-3.5" />
+                <span>OPEN IN GMAIL / MAIL CLIENT</span>
+              </a>
+
+              <button
+                onClick={handleCopyDraft}
+                className="w-full sm:w-auto border border-[#dfded8] bg-white hover:border-black text-gray-800 px-4 py-2 font-mono text-xs font-semibold flex items-center justify-center gap-1.5 transition-all"
+              >
+                {copiedDraft ? <Check className="w-3.5 h-3.5 text-cyber-emerald" /> : <Copy className="w-3.5 h-3.5 text-gray-500" />}
+                <span>{copiedDraft ? 'COPIED!' : 'COPY DRAFT'}</span>
+              </button>
+            </div>
+
+            <div className="pt-2">
+              <button
+                onClick={handleReset}
+                className="bg-[#121417] hover:bg-black text-white px-6 py-2 font-mono text-xs uppercase tracking-wider font-semibold"
+              >
+                CLOSE WINDOW
+              </button>
+            </div>
           </div>
         )}
 

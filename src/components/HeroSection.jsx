@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, Play, ExternalLink, ShieldCheck, Cpu, Terminal, Sparkles } from 'lucide-react';
+import { ArrowRight, Play, ExternalLink, ShieldCheck, Cpu, Terminal, Sparkles, FileText, Download } from 'lucide-react';
 import Globe3D from './Globe3D';
 import TerrainMesh3D from './TerrainMesh3D';
 import DecipherText from './DecipherText';
@@ -60,9 +60,7 @@ export default function HeroSection({ onOpenIntro, onExploreProjects }) {
             <div>
               {/* Category Tag Header */}
               <div className="flex items-center gap-2 mb-1.5 font-mono text-[10px] xl:text-[11px] text-gray-600 tracking-wider">
-                <span className="hover:text-black transition-colors font-medium">STUDENT</span>
-                <span>/</span>
-                <span className="hover:text-black transition-colors font-medium">BUILDER</span>
+                <span className="hover:text-black transition-colors font-medium">BCA (2026-29)</span>
                 <span>/</span>
                 <span className="text-cyber-emerald font-bold">CYBERSECURITY</span>
                 <span>/</span>
@@ -87,28 +85,42 @@ export default function HeroSection({ onOpenIntro, onExploreProjects }) {
               </p>
 
               {/* CTA Action Buttons */}
-              <div className="mt-2.5 xl:mt-3 flex flex-wrap items-center gap-2.5">
+              <div className="mt-2.5 xl:mt-3 flex flex-wrap items-center gap-2">
                 <button
                   onClick={() => {
                     playClick();
                     onExploreProjects();
                   }}
-                  className="bg-[#0c1012] hover:bg-[#192227] text-white px-4 py-2 xl:px-5 xl:py-2.5 rounded-none font-mono text-xs tracking-wider font-semibold flex items-center gap-1.5 shadow-sm transition-all hover:translate-x-0.5 active:scale-95 group"
+                  className="bg-[#0c1012] hover:bg-[#192227] text-white px-3.5 py-2 xl:px-4 xl:py-2.5 rounded-none font-mono text-xs tracking-wider font-semibold flex items-center gap-1.5 shadow-sm transition-all hover:translate-x-0.5 active:scale-95 group"
                 >
-                  <span>EXPLORE MY WORK</span>
+                  <span>PROJECTS</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </button>
+
+                <a
+                  href="./assets/subojit-resume.pdf"
+                  download="Subojit_Das_Sarkar_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => playClick()}
+                  className="bg-cyber-emerald hover:bg-emerald-700 text-white px-3.5 py-2 xl:px-4 xl:py-2.5 rounded-none font-mono text-xs tracking-wider font-semibold flex items-center gap-1.5 shadow-sm transition-all active:scale-95 group"
+                  title="Download Subojit Das Sarkar Resume"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>DOWNLOAD CV</span>
+                  <Download className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                </a>
 
                 <button
                   onClick={() => {
                     playBlip(800);
                     onOpenIntro();
                   }}
-                  className="border-2 border-[#121417] hover:bg-black/5 text-[#121417] px-4 py-2 xl:px-4.5 xl:py-2.5 rounded-full font-mono text-xs tracking-wider font-semibold flex items-center gap-1.5 transition-all active:scale-95 group"
+                  className="border border-[#121417] hover:bg-black/5 text-[#121417] px-3 py-2 xl:px-3.5 xl:py-2.5 rounded-full font-mono text-xs tracking-wider font-semibold flex items-center gap-1.5 transition-all active:scale-95 group"
                 >
-                  <span>WATCH INTRO</span>
-                  <div className="w-4 h-4 rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                    <Play className="w-2.5 h-2.5 fill-current ml-0.5" />
+                  <span>INTRO</span>
+                  <div className="w-3.5 h-3.5 rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+                    <Play className="w-2 h-2 fill-current ml-0.5" />
                   </div>
                 </button>
               </div>

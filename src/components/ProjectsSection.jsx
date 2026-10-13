@@ -27,7 +27,7 @@ export default function ProjectsSection() {
           'Automated security risk scoring (CVSS v3.1 framework)',
           'Generates clean JSON & PDF mitigation reports'
         ],
-        github: 'https://github.com/Darknesxy/vulnerability-scanner'
+        github: 'https://github.com/Darknesxy'
       }
     },
     {
@@ -45,7 +45,7 @@ export default function ProjectsSection() {
           'Docker container orchestration with automated health checks',
           'Zero-downtime Blue/Green rolling deployment strategy'
         ],
-        github: 'https://github.com/Darknesxy/cloud-infrastructure'
+        github: 'https://github.com/Darknesxy'
       }
     },
     {
@@ -63,7 +63,7 @@ export default function ProjectsSection() {
           'Configurable alerting via Syslog and Discord Webhook',
           'Low CPU overhead (< 4% on dual-core Linux systems)'
         ],
-        github: 'https://github.com/Darknesxy/network-ids'
+        github: 'https://github.com/Darknesxy'
       }
     },
     {
@@ -81,7 +81,7 @@ export default function ProjectsSection() {
           'Strict CSP and HSTS secure headers enforcement',
           'Comprehensive audit logging for all authentication attempts'
         ],
-        github: 'https://github.com/Darknesxy/zero-trust-gateway'
+        github: 'https://github.com/Darknesxy'
       }
     }
   ];

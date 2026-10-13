@@ -16,7 +16,7 @@ export default function IntroTerminalModal({ isOpen, onClose }) {
     '>> DEPLOYING FIREWALL STATEFUL RULES... [OK]',
     '>> ALLOCATING ZERO-TRUST AUTHENTICATION CONTEXT... [OK]',
     '-------------------------------------------------------',
-    'WELCOME TO SUBOJIT SARKAR PORTFOLIO OS',
+    'WELCOME TO SUBOJIT DAS SARKAR PORTFOLIO OS',
     'ETHOS: "I DON\'T TRUST THE SYSTEM. I LEARN TO SECURE IT."',
     'MISSION: DEFEND DIGITAL INFRASTRUCTURE THROUGH HANDS-ON RIGOR.',
     'STATUS: FULLY OPERATIONAL. READY FOR ENGAGEMENT.'
@@ -92,7 +92,7 @@ export default function IntroTerminalModal({ isOpen, onClose }) {
                 <span>cat profile.txt</span>
               </div>
               <p className="text-gray-400 text-[11px] leading-relaxed">
-                "Hello, I'm Subojit Sarkar. I study computer applications with a laser focus on defensive security, network packet investigation, and hardened cloud engineering. Feel free to explore my interactive 3D threat map, run simulated scans in the Security Lab, and inspect my production code."
+                "Hello, I'm Subojit Das Sarkar. I study BCA (Cloud Computing & Cybersecurity, 2026-2029) with a laser focus on defensive security, network packet investigation, and hardened cloud engineering. Feel free to explore my interactive 3D threat map, download my official CV, run simulated scans in the Security Lab, and inspect my production code."
               </p>
             </div>
           )}
