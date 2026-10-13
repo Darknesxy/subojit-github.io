@@ -314,7 +314,7 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between pt-3 border-t border-[#dfded8]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[#dfded8]">
               <a
                 href={activeModalProject.details.github}
                 target="_blank"
@@ -327,7 +327,7 @@ export default function ProjectsSection() {
 
               <button
                 onClick={() => setActiveModalProject(null)}
-                className="bg-[#121417] text-white px-5 py-2 font-mono text-xs uppercase tracking-wider font-semibold"
+                className="bg-[#121417] text-white px-5 py-2 font-mono text-xs uppercase tracking-wider font-semibold self-end sm:self-auto"
               >
                 CLOSE
               </button>

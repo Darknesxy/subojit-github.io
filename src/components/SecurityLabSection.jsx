@@ -217,12 +217,12 @@ export default function SecurityLabSection() {
             </div>
 
             {/* Real-time Animated Packet Indicator Line */}
-            <div className="mt-8 pt-4 border-t border-[#1b252c] flex items-center justify-between font-mono text-xs text-gray-400">
-              <div className="flex items-center gap-2">
-                <span className="text-emerald-400">● LIVE PACKET STREAM:</span>
+            <div className="mt-8 pt-4 border-t border-[#1b252c] flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-xs text-gray-400">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-emerald-400 font-semibold">● LIVE PACKET STREAM:</span>
                 <span className="text-gray-300">TCP Handshake [SYN ➔ SYN-ACK ➔ ACK]</span>
               </div>
-              <div className="flex items-center gap-1.5 text-gray-500 text-[11px]">
+              <div className="flex items-center gap-1.5 text-gray-500 text-[11px] shrink-0">
                 <RefreshCw className="w-3 h-3 animate-spin text-emerald-400" />
                 <span>PACKETS INSPECTED: 2,490/SEC</span>
               </div>

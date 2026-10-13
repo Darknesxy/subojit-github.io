@@ -125,10 +125,10 @@ export default function Navbar({ onOpenSearch, onOpenContact, onOpenTerminal, ac
               playClick();
               onOpenContact();
             }}
-            className="flex items-center gap-2 bg-[#0c1012] hover:bg-[#182025] text-white px-4 py-2 rounded-full font-mono text-xs tracking-wider font-semibold transition-all shadow-sm hover:shadow active:scale-95 group"
+            className="flex items-center gap-1.5 sm:gap-2 bg-[#0c1012] hover:bg-[#182025] text-white px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full font-mono text-[11px] sm:text-xs tracking-wider font-semibold transition-all shadow-sm hover:shadow active:scale-95 group shrink-0"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-cyber-emerald group-hover:scale-125 transition-transform" />
-            <span>LET'S CONNECT</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-cyber-emerald group-hover:scale-125 transition-transform shrink-0" />
+            <span><span className="hidden xs:inline">LET'S </span>CONNECT</span>
             <span className="group-hover:translate-x-0.5 transition-transform">→</span>
           </button>
 

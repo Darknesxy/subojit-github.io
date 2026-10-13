@@ -229,9 +229,36 @@ export default function Globe3D() {
       isDragging = false;
     };
 
+    // Touch support for tablets and mobile devices
+    const onTouchStart = (e) => {
+      if (e.touches && e.touches.length === 1) {
+        isDragging = true;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    };
+
+    const onTouchMove = (e) => {
+      if (!isDragging || !e.touches || e.touches.length !== 1) return;
+      const deltaX = e.touches[0].clientX - previousMousePosition.x;
+      const deltaY = e.touches[0].clientY - previousMousePosition.y;
+
+      globeGroup.rotation.y += deltaX * 0.008;
+      globeGroup.rotation.x += deltaY * 0.008;
+
+      previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    };
+
+    const onTouchEnd = () => {
+      isDragging = false;
+    };
+
     container.addEventListener('mousedown', onMouseDown);
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
+
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    window.addEventListener('touchend', onTouchEnd);
 
     // Initial globe angle
     globeGroup.rotation.y = 1.2;
@@ -290,6 +317,9 @@ export default function Globe3D() {
       container.removeEventListener('mousedown', onMouseDown);
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
+      container.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
       cancelAnimationFrame(animationFrameId);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);

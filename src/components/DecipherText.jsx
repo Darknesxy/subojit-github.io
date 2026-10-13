@@ -51,11 +51,15 @@ export default function DecipherText({
       const timeout = setTimeout(() => {
         startScramble();
       }, 200);
-      return () => clearTimeout(timeout);
+      return () => {
+        clearTimeout(timeout);
+        clearInterval(intervalRef.current);
+      };
     }
+    return () => clearInterval(intervalRef.current);
   }, [text]);
 
-  const handleMouseEnter = () => {
+  const handleInteraction = () => {
     if (scrambleOnHover) {
       startScramble();
     }
@@ -63,7 +67,8 @@ export default function DecipherText({
 
   return (
     <span
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={handleInteraction}
+      onClick={handleInteraction}
       className={`inline-block transition-colors cursor-default select-none ${className}`}
       data-cursor-hover
     >

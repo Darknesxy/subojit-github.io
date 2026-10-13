@@ -124,7 +124,7 @@ export default function HeroSection({ onOpenIntro, onExploreProjects }) {
             </div>
 
             {/* Bottom Metric Stats Grid */}
-            <div className="mt-2.5 xl:mt-3 pt-2 xl:pt-2.5 border-t border-[#dfded8] grid grid-cols-4 gap-1.5 xl:gap-2">
+            <div className="mt-2.5 xl:mt-3 pt-2 xl:pt-2.5 border-t border-[#dfded8] grid grid-cols-2 sm:grid-cols-4 gap-1.5 xl:gap-2">
               <div className="bg-white/80 border border-[#dfded8] p-1.5 xl:p-2 group hover:border-black transition-colors">
                 <div className="font-display font-black text-lg xl:text-xl 2xl:text-2xl text-[#121417] group-hover:text-cyber-emerald transition-colors">
                   10+
@@ -169,7 +169,7 @@ export default function HeroSection({ onOpenIntro, onExploreProjects }) {
         {/* CENTER COLUMN: Subojit Portrait & Holographic Glitch (Cols 6-9) */}
         {/* ========================================================= */}
         <div 
-          className="xl:col-span-4 border-b xl:border-b-0 xl:border-r border-[#dfded8] p-0 flex flex-col justify-between items-center relative bg-[#faf8ec] overflow-hidden h-full"
+          className="xl:col-span-4 border-b xl:border-b-0 xl:border-r border-[#dfded8] p-0 flex flex-col justify-between items-center relative bg-[#faf8ec] overflow-hidden h-full min-h-[380px] sm:min-h-[460px] xl:min-h-0"
           style={{ perspective: '1000px' }}
         >
           {/* Subtle background ambient cyber ring */}
@@ -192,7 +192,7 @@ export default function HeroSection({ onOpenIntro, onExploreProjects }) {
             <img 
               src="./assets/hero-subojit.jpg" 
               alt="Subojit Sarkar - Cybersecurity Explorer" 
-              className="w-full h-full max-h-[calc(100vh-6.5rem)] object-contain object-bottom filter contrast-105 transition-all duration-300"
+              className="w-full h-full max-h-[400px] sm:max-h-[500px] xl:max-h-[calc(100vh-6.5rem)] object-contain object-bottom filter contrast-105 transition-all duration-300"
               loading="eager"
               onError={(e) => {
                 if (!e.target.dataset.retried) {

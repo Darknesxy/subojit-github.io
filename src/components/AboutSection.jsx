@@ -156,11 +156,11 @@ export default function AboutSection() {
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-[#dfded8] flex items-center justify-between">
+            <div className="mt-6 pt-4 border-t border-[#dfded8] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <span className="font-mono text-xs text-gray-500">KOLKATA / INDIA • 2026</span>
               <button 
                 onClick={() => setModalOpen(false)}
-                className="bg-[#121417] text-white px-5 py-2 font-mono text-xs uppercase tracking-wider font-semibold"
+                className="bg-[#121417] text-white px-5 py-2 font-mono text-xs uppercase tracking-wider font-semibold self-end sm:self-auto"
               >
                 CLOSE DOSSIER
               </button>

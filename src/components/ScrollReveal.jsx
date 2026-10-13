@@ -6,12 +6,18 @@ export default function ScrollReveal({
   delay = 0,
   duration = 600,
   className = '',
-  threshold = 0.15,
+  threshold = 0.05,
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef(null);
 
   useEffect(() => {
+    // If IntersectionObserver is not supported or fails, fallback to visible
+    if (!window.IntersectionObserver) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -21,7 +27,7 @@ export default function ScrollReveal({
           }
         });
       },
-      { threshold }
+      { threshold, rootMargin: '0px 0px -20px 0px' }
     );
 
     const currentDom = domRef.current;
@@ -29,12 +35,18 @@ export default function ScrollReveal({
       observer.observe(currentDom);
     }
 
+    // Safety timeout: ensure content is visible within 1.2s on mobile
+    const safetyTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1200 + delay);
+
     return () => {
+      clearTimeout(safetyTimer);
       if (currentDom) {
         observer.unobserve(currentDom);
       }
     };
-  }, [threshold]);
+  }, [threshold, delay]);
 
   const getAnimationStyles = () => {
     const baseTransition = {

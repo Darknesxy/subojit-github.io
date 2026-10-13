@@ -19,6 +19,11 @@ export default function CyberCursor() {
       return;
     }
 
+    const handleTouchStart = () => {
+      setIsTouchDevice(true);
+    };
+    window.addEventListener('touchstart', handleTouchStart, { once: true, passive: true });
+
     const handleMouseMove = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
       setPos({ x: e.clientX, y: e.clientY });
@@ -82,7 +87,7 @@ export default function CyberCursor() {
   if (isTouchDevice || !isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
       {/* 1. Sharp Primary Center Dot */}
       <div
         className="fixed -translate-x-1/2 -translate-y-1/2 rounded-full transition-transform duration-75 ease-out"
